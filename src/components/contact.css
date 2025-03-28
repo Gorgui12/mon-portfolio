@@ -1,0 +1,88 @@
+.main-contact {
+    background-color: rgb(27, 68, 92);
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem;
+}
+
+.main h3 {
+    margin-bottom: 1rem;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.form {
+    width: 100%;
+    padding-inline: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.inputContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+input, .textarea {
+    font-size: large;
+    height: 2.5rem;
+    width: 45%;
+    padding: 0.5rem;
+    border: 1px solid black;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+.textarea {
+    height: 8rem;
+    min-width: 50%;
+    min-height: 5rem;
+    max-width: 95%;
+    max-height: 10rem;
+}
+
+.btn-submit {
+    width: 95%;
+    padding: 1rem;
+    background-color: cyan;
+    color: black;
+    font-size: large;
+    border-radius: 10rem;
+    border: none;
+    cursor: pointer;
+    transition:  0.5s ease;
+}
+.btn-submit:active{
+    background-color: rgb(9, 248, 168);
+    transform: scale(0.9);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form {
+        padding-inline: 2rem;
+    }
+
+    .inputContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input, .textarea {
+        width: 90%;
+    }
+
+    .btn-submit {
+        width: 90%;
+    }
+}

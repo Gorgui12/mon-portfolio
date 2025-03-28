@@ -1,0 +1,26 @@
+
+.header{
+    position: relative;
+}
+
+.homeSection, .servicesSection, .portfolioSection .contactSection{
+    width: 100%;
+    margin: 0px;
+    
+    
+}
+.homeSection{
+    
+}
+.servicesSection{
+    background-color: aqua;
+}
+.portfolioSection{
+
+}
+.contactSection{
+
+}
+@media(max-width: 768px){
+    
+}
