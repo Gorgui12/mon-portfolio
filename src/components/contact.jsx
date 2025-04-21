@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
+import ContactSection from "./animationsSection/contactSection";
 
 function Contact() {
   const formRef = useRef(null);
@@ -39,7 +40,8 @@ function Contact() {
   };
 
   return (
-    <div className="bg-[#1b445c] w-full min-h-[80vh] flex flex-col items-center justify-around p-8">
+    //<div className="bg-[#1b445c] w-full min-h-[80vh] flex flex-col items-center justify-around p-8 transition ease-in-out duration-1000">
+      <ContactSection>
       <h3 className="mb-4 text-xl font-bold text-white">
         Me <span className="text-cyan-400">Contacter</span>
       </h3>
@@ -112,7 +114,8 @@ function Contact() {
       </form>
 
       {status && <p className="text-white mt-4 text-center">{status}</p>}
-    </div>
+      </ContactSection>
+    //</div>
   );
 }
 

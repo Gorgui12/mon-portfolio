@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok } from 'react-icons/fa';
+import HomeSection from "./animationsSection/homeSection";
 import Profil from '../assets/profile.jpg'
 
 
@@ -19,7 +20,8 @@ function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-around gap-8 p-6">
+   // <div className="flex flex-col md:flex-row items-center justify-around gap-8 p-6 transition ease-out duration-1000">
+   <HomeSection>
       <div className="w-[250px] h-[300px] md:w-[250px] md:h-[300px] bg-blue-400 shadow-[0_0_15px_rgb(46,224,236)] rounded-[20%_40%_20%_40%] rotate-[10deg] flex items-center justify-center overflow-hidden">
         <img src={Profil} alt="Profil" className="w-full h-full object-cover" />
       </div>
@@ -51,7 +53,9 @@ function Home() {
           </button>
         </div>
       </div>
-    </div>
+      
+  </HomeSection>
+  //</div> 
   );
 }
 

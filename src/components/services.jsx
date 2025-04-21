@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCode, FaPalette, FaChartLine } from 'react-icons/fa';
+import ServicesSection from "./animationsSection/servicesSection";
 
 function Services() {
     const services = [
@@ -21,7 +22,8 @@ function Services() {
     ];
 
     return (
-        <div className="flex flex-col items-center justify-between p-8">
+        //<div className="flex flex-col items-center justify-between p-8">
+        <ServicesSection>
             <h2 className="text-3xl font-bold mb-8">
                 Mes <span className="text-cyan-400">Services</span>
             </h2>
@@ -40,7 +42,8 @@ function Services() {
                     </div>
                 ))}
             </div>
-        </div>
+            </ServicesSection>
+        //</div>
     );
 }
 

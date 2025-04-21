@@ -1,4 +1,5 @@
 import React from "react";
+import PortfolioSection from "./animationsSection/portfoliosection";
 
 function Portfolio() {
     const projets = [
@@ -20,7 +21,8 @@ function Portfolio() {
     ];
 
     return (
-        <div className="w-full min-h-[80vh] flex flex-col justify-center items-center gap-12 p-8">
+        //<div className="w-full min-h-[80vh] flex flex-col justify-center items-center gap-12 p-8 transition ease-in duration-1000">
+            <PortfolioSection>
             <h2 className="text-3xl font-bold">
                 Derniers <span className="text-cyan-400">Projets</span>
             </h2>
@@ -46,7 +48,8 @@ function Portfolio() {
                     </div>
                 ))}
             </div>
-        </div>
+            </PortfolioSection>
+       // </div>
     );
 }
 

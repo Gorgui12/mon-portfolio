@@ -1,4 +1,5 @@
 import React from "react";
+import SkillSectionAnimation from "./animationsSection/SkillsSection";
 
 function Skills() {
     const stats = [
@@ -9,7 +10,8 @@ function Skills() {
     ];
 
     return (
-        <div className="flex flex-wrap justify-between items-center gap-4 p-8 max-md:flex-col max-md:items-center">
+       // <div className="flex flex-wrap justify-between items-center gap-4 p-8 max-md:flex-col max-md:items-center">
+       <SkillSectionAnimation>
             {stats.map((item, index) => (
                 <div
                     key={index}
@@ -23,7 +25,9 @@ function Skills() {
                     </span>
                 </div>
             ))}
-        </div>
+             </SkillSectionAnimation>
+            //</div>
+       
     );
 }
 

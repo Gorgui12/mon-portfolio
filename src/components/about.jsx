@@ -44,7 +44,7 @@ import profil from '../assets/profil.jpeg';
 
 function About() {
   return (
-    <div className="w-full h-auto p-8 grid grid-rows-[90%_10%]">
+    <div className="w-full h-auto p-8 grid grid-rows-[90%_10%] transition ease-in duration-500">
       <div className="flex flex-row items-center justify-around gap-4 flex-wrap">
         {/* Texte */}
         <div className="flex flex-col max-w-xl">
