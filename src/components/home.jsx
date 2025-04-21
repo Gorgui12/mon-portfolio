@@ -6,18 +6,20 @@ import Profil from '../assets/profile.jpg'
 
 function Home() {
   const [metier, setMetier] = useState('');
-
+  const metiers = ['specialiste en Marketing digital', 'UI/UX Designer', 'Developer full-stack'];
+  
   useEffect(() => {
-    const timeouts = [
-      setTimeout(() => setMetier('Developer Web'), 0),
-      setTimeout(() => setMetier('UI/UX Designer'), 4000),
-      setTimeout(() => setMetier('Spécialiste en marketing digital'), 8000),
-    ];
-
-    return () => {
-      timeouts.forEach(clearTimeout);
-    };
+    let index = 0;
+  
+    const interval = setInterval(() => {
+      setMetier(metiers[index]);
+      index = (index + 1) % metiers.length; // pour que ça boucle
+    }, 4000);
+  
+    // nettoyage
+    return () => clearInterval(interval);
   }, []);
+  
 
   return (
    // <div className="flex flex-col md:flex-row items-center justify-around gap-8 p-6 transition ease-out duration-1000">
