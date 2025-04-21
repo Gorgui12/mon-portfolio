@@ -32,8 +32,8 @@ function Home() {
         <p className="text-cyan-100 text-4xl font-bold drop-shadow-[4px_4px_10px_aqua]">Bonjour, je suis
           <span className="block text-5xl mt-2 text-cyan-100"> Gorgui Fall</span>
         </p>
-        <p className="text-2xl text-cyan-100 mt-2 drop-shadow-[4px_4px_10px_aqua] transition duration-1000">
-          Et je suis <span className="font-semibold"> {metier} </span>
+        <p className="text-2xl  transition duration-1000">
+          Et je suis <span className="font-semibold m-2 text-cyan-100 mt-2 drop-shadow-[4px_4px_10px_aqua]"> {metier} </span>
         </p>
 
         <p className="mt-4 text-white max-w-md">
