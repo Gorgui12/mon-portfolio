@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Header from "./components/header";
 import Hero from "./components/Hero";
 import Skills from './components/skills';
-import Technologies from './components/Technologies';
+import Technologies from './components/technologies';
 import Services from "./components/services";
 import Portfolio from "./components/portfolio";
 import Contact from './components/contact';
