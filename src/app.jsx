@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import Header from "./components/header";
 import Hero from "./components/Hero";
-import Skills from './components/Skills';
+import Skills from './components/skills';
 import Technologies from './components/Technologies';
-import Services from "./components/Services";
-import Portfolio from "./components/Portfolio";
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Services from "./components/services";
+import Portfolio from "./components/portfolio";
+import Contact from './components/contact';
+import Footer from './components/footer';
 
 function App() {
   // Références pour chaque section
