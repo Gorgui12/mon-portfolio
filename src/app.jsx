@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Header from "./components/Header";
+import Header from "./components/header";
 import Hero from "./components/Hero";
 import Skills from './components/Skills';
 import Technologies from './components/Technologies';
