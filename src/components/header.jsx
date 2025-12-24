@@ -1,12 +1,40 @@
-import React, { useState } from "react";
-import { FaBars, FaTimes, FaDownload } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { Menu, X, Download } from 'lucide-react';
 
 function Header({ scrollToSection, homeRef, skillsRef, servicesRef, portfolioRef, contactRef }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState(0);
 
-  const toggleMenu = () => {
-    setOpen(!open);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+      
+      // Déterminer la section active
+      const sections = [homeRef, skillsRef, servicesRef, portfolioRef, contactRef];
+      const scrollPosition = window.scrollY + 100;
+
+      sections.forEach((ref, index) => {
+        if (ref.current) {
+          const { offsetTop, offsetHeight } = ref.current;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(index);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [homeRef, skillsRef, servicesRef, portfolioRef, contactRef]);
+
+  const menuItems = [
+    { name: 'Accueil', ref: homeRef },
+    { name: 'Skills', ref: skillsRef },
+    { name: 'Services', ref: servicesRef },
+    { name: 'Portfolio', ref: portfolioRef },
+    { name: 'Contact', ref: contactRef }
+  ];
 
   const handleMenuClick = (ref) => {
     scrollToSection(ref);
@@ -14,140 +42,66 @@ function Header({ scrollToSection, homeRef, skillsRef, servicesRef, portfolioRef
   };
 
   return (
-    <div className="w-full bg-[#095055] flex flex-wrap items-center justify-between px-4 py-4 relative">
-      {/* Logo */}
-      <div className="text-white font-bold text-xl">
-        <h2>
-          <span>GORGUI</span>
-          <br />
-          <span>FALL</span>
-        </h2>
-      </div>
+    <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+      scrolled ? 'bg-[#095055]/95 backdrop-blur-md shadow-2xl shadow-cyan-400/10' : 'bg-[#095055]'
+    }`}>
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <div className="text-white font-bold hover:text-cyan-400 transition-colors cursor-pointer group">
+          <h2>
+            <span className="text-2xl tracking-wider group-hover:tracking-widest transition-all">GORGUI</span>
+            <br />
+            <span className="text-sm tracking-[0.3em] text-cyan-400">FALL</span>
+          </h2>
+        </div>
 
-      {/* Bouton mobile */}
-      <button
-        className="md:hidden text-white text-2xl absolute top-5 right-4"
-        onClick={toggleMenu}
-      >
-        {open ? <FaTimes /> : <FaBars />}
-      </button>
-
-      {/* Navigation */}
-      <nav
-        className={`w-full md:w-auto transition-all duration-300 ease-in-out overflow-hidden ${
-          open ? "max-h-[300px] mt-4" : "max-h-0 md:max-h-full"
-        } md:mt-0`}
-      >
-        <ul
-          className={`flex flex-col md:flex-row items-center justify-evenly md:gap-8 gap-4 text-white font-bold ${
-            open ? "flex" : "hidden md:flex"
-          }`}
+        {/* Bouton mobile */}
+        <button
+          className="md:hidden text-white text-2xl z-50 hover:text-cyan-400 transition-colors"
+          onClick={() => setOpen(!open)}
         >
-          <li>
-            <button onClick={() => handleMenuClick(homeRef)} className="hover:text-[#00e6e6]">
-              Accueil
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleMenuClick(skillsRef)} className="hover:text-[#00e6e6]">
-              Skills
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleMenuClick(servicesRef)} className="hover:text-[#00e6e6]">
-              Services
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleMenuClick(portfolioRef)} className="hover:text-[#00e6e6]">
-              Portfolio
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleMenuClick(contactRef)} className="hover:text-[#00e6e6]">
-              Contact
-            </button>
-          </li>
-        </ul>
-      </nav>
+          {open ? <X size={28} /> : <Menu size={28} />}
+        </button>
 
-      {/* Télécharger CV */}
-      <div className="hidden md:block">
+        {/* Navigation */}
+        <nav className={`${
+          open ? 'flex' : 'hidden'
+        } md:flex fixed md:relative top-0 left-0 w-full md:w-auto h-screen md:h-auto bg-gradient-to-b from-[#095055] to-[#0a1f2e] md:bg-transparent flex-col md:flex-row items-center justify-center md:justify-end gap-8 transition-all duration-300`}>
+          {menuItems.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => handleMenuClick(item.ref)}
+              className={`text-lg md:text-base font-semibold transition-all duration-300 relative group ${
+                activeSection === index ? 'text-cyan-400 scale-110' : 'text-white hover:text-cyan-400'
+              }`}
+            >
+              {item.name}
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-cyan-400 transition-all duration-300 ${
+                activeSection === index ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></span>
+            </button>
+          ))}
+        </nav>
+
+        {/* Bouton CV */}
         <a
           href="/cv-gorgui-fall.pdf"
           download="Gorgui_Fall_CV.pdf"
-          className="bg-[#00e6e6] text-[#095055] font-bold py-2 px-4 rounded hover:bg-[#008c8c] hover:text-white transition-colors"
+          className="hidden md:flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold py-3 px-6 rounded-full hover:from-cyan-300 hover:to-blue-400 hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-400/30"
         >
-          Télécharger CV <FaDownload className="inline ml-2" />
+          Mon CV <Download size={18} className="animate-bounce" />
         </a>
       </div>
-    </div>
-  );
-}
 
-export default Header;
-
-
-/*import React, { useState } from "react";
-import "./header.css";
-import { FaBars, FaTimes, FaDownload } from "react-icons/fa";
-
-function Header({ scrollToSection, homeRef, skillsRef, servicesRef, portfolioRef, contactRef }) {
-  const [open, setOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setOpen(!open);
-  };
-
-  // Fonction pour défiler et fermer le menu
-  const handleMenuClick = (ref) => {
-    scrollToSection(ref);
-    setOpen(false); // Ferme le menu après le clic
-  };
-
-  return (
-    <div className="header-container">
-      <div className="logo-container">
-        <h2>
-          <span>GORGUI</span>
-          <br />
-          <span>FALL</span>
-        </h2>
+      {/* Barre de progression */}
+      <div className="h-1 bg-white/10">
+        <div 
+          className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300"
+          style={{ width: `${(activeSection / (menuItems.length - 1)) * 100}%` }}
+        ></div>
       </div>
-
-      <nav className={`nav ${open ? "open" : ""}`} id="menu-container">
-        <ul className="menu-items">
-          <li className="menu-item">
-            <button onClick={() => handleMenuClick(homeRef)}>Accueil</button>
-          </li>
-          <li className="menu-item">
-            <button onClick={() => handleMenuClick(skillsRef)}>Skills</button>
-          </li>
-          <li className="menu-item">
-            <button onClick={() => handleMenuClick(servicesRef)}>Services</button>
-          </li>
-          <li className="menu-item">
-            <button onClick={() => handleMenuClick(portfolioRef)}>Portfolio</button>
-          </li>
-          <li className="menu-item">
-            <button onClick={() => handleMenuClick(contactRef)}>Contact</button>
-          </li>
-        </ul>
-      </nav>
-
-      <div className="theme-cv-container">
-         <a href="/cv-gorgui-fall.pdf" download="Gorgui_Fall_CV.pdf">
-           Télécharger CV <FaDownload/>
-         </a>
-    </div>
-
-
-      <button className="menu-toggle" onClick={toggleMenu}>
-        {open ? <FaTimes size={24} /> : <FaBars size={24} />}
-      </button>
-    </div>
+    </header>
   );
 }
 
 export default Header;
-*/

@@ -1,38 +1,70 @@
-import React, {useRef} from 'react';
-import './app.css'
-import Header from "./components/header";
-import Home from "./components/home";
-import Skills from './components/skills';
-//import About from "./components/about";
-import Services from "./components/services";
-import Portfolio from "./components/portfolio";
-import Contact from './components/contact';
-import Footer from './components/footer';
+import React, { useRef } from 'react';
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Skills from './components/Skills';
+import Technologies from './components/Technologies';
+import Services from "./components/Services";
+import Portfolio from "./components/Portfolio";
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 
-function App(){
-//reference pour chaque section
-const homeRef = useRef(null);
-const skillsRef = useRef(null);
-const servicesRef = useRef(null);
-const portfolioRef = useRef(null);
-const contactRef = useRef(null);
+function App() {
+  // Références pour chaque section
+  const homeRef = useRef(null);
+  const skillsRef = useRef(null);
+  const servicesRef = useRef(null);
+  const portfolioRef = useRef(null);
+  const contactRef = useRef(null);
 
-//fonction pour defiler vers une section
-const scrollToSection = (ref) => {
+  // Fonction pour défiler vers une section
+  const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
-};
-    return(
-        <>
-            <div className='appContainer'>
-                    <header className="header"><Header scrollToSection={scrollToSection} homeRef={homeRef} skillsRef={skillsRef} servicesRef={servicesRef} portfolioRef={portfolioRef} contactRef={contactRef} /></header>
-                    <section ref = {homeRef}><Home/></section>
-                    <section ref = {skillsRef}><Skills/></section>
-                    <section ref = {servicesRef}><Services/></section>
-                    <section ref = {portfolioRef}><Portfolio/></section>
-                    <section ref = {contactRef}><Contact/></section>
-                    <section ><Footer/></section>
-            </div>
-        </>
-    )
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0a1f2e]">
+      {/* Header fixe */}
+      <Header 
+        scrollToSection={scrollToSection} 
+        homeRef={homeRef} 
+        skillsRef={skillsRef} 
+        servicesRef={servicesRef} 
+        portfolioRef={portfolioRef} 
+        contactRef={contactRef} 
+      />
+
+      {/* Sections principales */}
+      <main>
+        <section ref={homeRef}>
+          <Hero />
+        </section>
+        
+        <section ref={skillsRef}>
+          <Skills />
+        </section>
+        
+        <section>
+          <Technologies />
+        </section>
+        
+        <section ref={servicesRef}>
+          <Services />
+        </section>
+        
+        <section ref={portfolioRef}>
+          <Portfolio />
+        </section>
+        
+        <section ref={contactRef}>
+          <Contact />
+        </section>
+      </main>
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
 }
+
 export default App;
+
